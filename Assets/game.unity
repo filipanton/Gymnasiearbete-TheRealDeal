@@ -428,7 +428,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 644517279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -206, y: -134.1, z: -10}
+  m_LocalPosition: {x: -224, y: -156, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -448,6 +448,13 @@ MonoBehaviour:
   target: {fileID: 1155319399}
   PPUScale: 1
   PPU: 10
+  range: 0
+  bounds: 1
+  minCameraPos: {x: -559.8, y: -145, z: -10}
+  maxCameraPos: {x: 1000, y: 1000, z: -10}
+  player: {fileID: 1155319394}
+  offset: 5
+  offsetSmoothing: 2
 --- !u!1 &659531746
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +469,7 @@ GameObject:
   - component: {fileID: 659531748}
   - component: {fileID: 659531747}
   m_Layer: 0
-  m_Name: Player
+  m_Name: asdasdsadas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1168,7 +1175,7 @@ GameObject:
   - component: {fileID: 1155319401}
   - component: {fileID: 1155319397}
   m_Layer: 0
-  m_Name: Player1
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1190,7 +1197,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 20
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -1298,7 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce636119bbacbf84984395a3900cdfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 50
+  movespeed: 40
   jumpforce: 60
   Player_Grounded: 0
   touchwallright: 0

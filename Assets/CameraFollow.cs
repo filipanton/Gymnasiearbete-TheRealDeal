@@ -8,6 +8,17 @@ public class CameraFollow : MonoBehaviour
     public float PPUScale;
     public float PPU;
     Camera mycam;
+    public float range;
+
+    public bool bounds;
+
+    public Vector3 minCameraPos;
+    public Vector3 maxCameraPos;
+    public GameObject player;
+    public float offset;
+    private Vector3 playerPosition;
+    public float offsetSmoothing;
+
 
     // Use this for initialization
     void Start()
@@ -16,15 +27,39 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
 
+
+        // Set PPUScale to a value that is your current screen height divided by your base art resolution
         PPUScale = Screen.height / 480f;
+        // Set the OrthoSize to this wacky formula
         mycam.orthographicSize = ((Screen.height) / (PPUScale * PPU)) * 0.5f;
 
-        if (target)
+        
+
+
+        playerPosition = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        if (player.transform.localScale.x > 0f)
         {
-            transform.position = new Vector3(target.position.x, target.position.y, -10) + new Vector3(0, 10 ,0);
+
+            playerPosition = new Vector3(playerPosition.x + offset, target.position.y, -10);
+
+
+        }
+        else
+        {
+            playerPosition = new Vector3(playerPosition.x - offset, target.position.y, -10);
+        }
+
+        transform.position = Vector3.Lerp(transform.position, playerPosition, offsetSmoothing * Time.deltaTime);
+
+        if (bounds)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, minCameraPos.x, maxCameraPos.x),
+            Mathf.Clamp(transform.position.y, minCameraPos.y, maxCameraPos.y),
+            Mathf.Clamp(transform.position.z, minCameraPos.y, maxCameraPos.z));
+
         }
     }
 }
