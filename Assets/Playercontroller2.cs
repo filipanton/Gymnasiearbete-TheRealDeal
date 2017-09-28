@@ -117,7 +117,7 @@ public class Playercontroller2 : MonoBehaviour
             Player_Grounded++;
             rb.velocity = new Vector2(45, 65);
             inputtimer = 0.2f;
-
+            transform.localScale = new Vector2(1, 1);
             Debug.Log(touchwallright);
 
         }
@@ -126,7 +126,7 @@ public class Playercontroller2 : MonoBehaviour
         {
             rb.velocity = new Vector2(-45, 65);
             inputtimer = 0.2f;
-
+            transform.localScale = new Vector2(-1, 1);
         }
 
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && inputtimer == 0)
