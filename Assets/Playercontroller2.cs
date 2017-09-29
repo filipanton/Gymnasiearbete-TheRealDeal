@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Playercontroller2 : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class Playercontroller2 : MonoBehaviour
     public bool touchwallleft;
     public bool Allow_Double_Jump;
     public bool touchingfloor;
-
+    public bool touchobstacle;
     public float inputtimer;
-
+    public float deathtimer;
 
     Rigidbody2D rb;
 
@@ -23,6 +24,17 @@ public class Playercontroller2 : MonoBehaviour
     {
     // Instead of writing all GetCOmponent<Rigidbody2D>() write rb.
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    // What happens when touching an obstacle 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            touchobstacle = true;
+        }
+
     }
 
     // What happens when the player is touching the platform.
@@ -78,7 +90,7 @@ public class Playercontroller2 : MonoBehaviour
 
 
     private void Update()
-
+        // Timer for the no-input after walljump
     {
         if (inputtimer > 0)
         {
@@ -89,16 +101,26 @@ public class Playercontroller2 : MonoBehaviour
             inputtimer = 0;
         }
 
+        // Timer for delay when restarting scene
+        if (deathtimer > 0)
+        {
+            deathtimer -= Time.deltaTime;
+        }
+        else
+        {
+            deathtimer = 0;
+        }
 
 
 
+        //if touching the ground my player wont slide
         if (Player_Grounded == 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-
-        if (Input.GetKeyDown(KeyCode.Space) && (Player_Grounded < 2))
+        // When pressing space and the player grounded is less than 2 the player will be able to jump
+        if (Input.GetKeyDown(KeyCode.Space) && (Player_Grounded < 2) && touchobstacle == false)
         {
             if (Allow_Double_Jump == true || Player_Grounded == 0)
             {
@@ -112,7 +134,7 @@ public class Playercontroller2 : MonoBehaviour
         }
 
 
-        if (touchwallright == true && Input.GetKeyDown(KeyCode.Space) && touchingfloor == false)
+        if (touchwallright == true && Input.GetKeyDown(KeyCode.Space) && touchingfloor == false && touchobstacle == false)
         {
             Player_Grounded++;
             rb.velocity = new Vector2(45, 65);
@@ -122,20 +144,20 @@ public class Playercontroller2 : MonoBehaviour
 
         }
 
-        if (touchwallleft == true && Input.GetKeyDown(KeyCode.Space) && touchingfloor == false)
+        if (touchwallleft == true && Input.GetKeyDown(KeyCode.Space) && touchingfloor == false && touchobstacle == false)
         {
             rb.velocity = new Vector2(-45, 65);
             inputtimer = 0.2f;
             transform.localScale = new Vector2(-1, 1);
         }
 
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && inputtimer == 0)
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && inputtimer == 0 && touchobstacle == false)
         {
             rb.velocity = new Vector2(movespeed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
         }
 
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && inputtimer == 0)
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && inputtimer == 0 && touchobstacle == false)
         {
             rb.velocity = new Vector2(-movespeed, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
@@ -147,6 +169,15 @@ public class Playercontroller2 : MonoBehaviour
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
 
+        if (touchobstacle == true && deathtimer ==0 )
+        {
+            deathtimer = 3;
+            
+        }
+        if (touchobstacle == true && deathtimer < 1 && deathtimer > 0.8f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
 
