@@ -7,6 +7,7 @@ public class block : MonoBehaviour {
     public float blocktimer;
     public bool blockcollider;
     public bool playanimation;
+    private Animator myAnimator;
 
     private void OnCollisionEnter2D(Collision2D Colliding_With)
     {
@@ -18,6 +19,11 @@ public class block : MonoBehaviour {
             blocktimer = 1f;
             blockcollider = true;
         }
+    }
+
+    private void Start()
+    {
+        myAnimator = GetComponent<Animator>();
     }
 
 
@@ -37,15 +43,17 @@ public class block : MonoBehaviour {
             blocktimer = -1;
         }
         //What happens 1 second after block collision
-        if (blocktimer <= 0f && blockcollider == true)
+        if (blocktimer <= 0.6f && blockcollider == true)
         {
 
             GetComponent<Collider2D>().enabled = false;
 
+            myAnimator.SetBool("fall", playanimation);
+
             playanimation = true;
 
             //What happens 2 seconds after block collision
-            if (blocktimer <= -1)
+            if (blocktimer <= 0.3f)
             {
                 Destroy(gameObject);
                 Debug.Log("it works");
