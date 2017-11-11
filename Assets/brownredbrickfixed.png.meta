@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e2957d02e5592014f82dbfba9d399314
-timeCreated: 1510401597
+guid: 68d57f062634da34397110af8dd833cb
+timeCreated: 1510410579
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blackbrick_0
+    21300000: brownredbrickfixed_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -79,11 +79,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackbrick_0
+      name: brownredbrickfixed_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
+        x: 32
+        y: 36
         width: 32
         height: 32
       alignment: 0

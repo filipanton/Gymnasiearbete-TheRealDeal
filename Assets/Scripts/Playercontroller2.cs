@@ -16,6 +16,7 @@ public class Playercontroller2 : MonoBehaviour
     public bool touchobstacle;
     public float inputtimer;
     public float deathtimer;
+    public bool Edgelimit;
 
     Rigidbody2D rb;
 
@@ -26,7 +27,7 @@ public class Playercontroller2 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // What happens when touching an obstacle 
+    // What happens when touching something 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
@@ -34,12 +35,17 @@ public class Playercontroller2 : MonoBehaviour
         {
             touchobstacle = true;
         }
-
+        
+        
     }
+
+  
 
     // What happens when the player is touching the platform.
     void OnCollisionStay2D(Collision2D Colliding_With)
     {
+       
+
         Vector2 MyNormal = Colliding_With.contacts[0].normal;
 
         // Whats happens when touching the top surface of an platform.
@@ -63,16 +69,28 @@ public class Playercontroller2 : MonoBehaviour
 
         {
             touchwallright = true;
+
+            if (Colliding_With.gameObject.tag == "Edge")
+            {
+                Edgelimit = true;
+            }
         }
 
         // Whats happens when touching the left side surface of an platform.
         if (MyNormal.x <= -0.75)
         {
             touchwallleft = true;
+
+            if (Colliding_With.gameObject.tag == "Edge")
+            {
+                Edgelimit = true;
+            }
         }
 
+        
 
     }
+    
     // What happens when the player stops touching an object.
     void OnCollisionExit2D(Collision2D Colliding_With)
     {
@@ -86,6 +104,8 @@ public class Playercontroller2 : MonoBehaviour
         touchingfloor = false;
         touchwallright = false;
         touchwallleft = false;
+        Edgelimit = false;
+
     }
 
 
@@ -136,19 +156,26 @@ public class Playercontroller2 : MonoBehaviour
 
         if (touchwallright == true && Input.GetKeyDown(KeyCode.Space) && touchingfloor == false && touchobstacle == false)
         {
-            Player_Grounded++;
-            rb.velocity = new Vector2(45, 65);
-            inputtimer = 0.2f;
-            transform.localScale = new Vector2(1, 1);
+            if (Edgelimit != true)
+            {
+                Player_Grounded++;
+                rb.velocity = new Vector2(45, 65);
+                inputtimer = 0.2f;
+                transform.localScale = new Vector2(1, 1);
+            }
             
 
         }
 
         if (touchwallleft == true && Input.GetKeyDown(KeyCode.Space) && touchingfloor == false && touchobstacle == false)
         {
-            rb.velocity = new Vector2(-45, 65);
-            inputtimer = 0.2f;
-            transform.localScale = new Vector2(-1, 1);
+            if (Edgelimit != true)
+            {
+
+                rb.velocity = new Vector2(-45, 65);
+                inputtimer = 0.2f;
+                transform.localScale = new Vector2(-1, 1);
+            }
         }
 
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && inputtimer == 0 && touchobstacle == false && (Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.LeftArrow) == false))
