@@ -112,6 +112,9 @@ public class Playercontroller2 : MonoBehaviour
     private void Update()
         // Timer for the no-input after walljump
     {
+        
+
+
         if (inputtimer > 0)
         {
             inputtimer -= Time.deltaTime;
