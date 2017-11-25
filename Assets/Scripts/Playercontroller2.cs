@@ -202,7 +202,7 @@ public class Playercontroller2 : MonoBehaviour
         if (touchobstacle == true && deathtimer ==0 )
         {
             deathtimer = 3;
-            
+            Destroy(rb);
         }
         if (touchobstacle == true && deathtimer < 1 && deathtimer > 0.8f)
         {
