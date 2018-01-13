@@ -17,6 +17,7 @@ public class Playercontroller2 : MonoBehaviour
     public float inputtimer;
     public float deathtimer;
     public bool Edgelimit;
+    public float maxspeed;
 
     Rigidbody2D rb;
 
@@ -162,7 +163,7 @@ public class Playercontroller2 : MonoBehaviour
             if (Edgelimit != true)
             {
                 Player_Grounded++;
-                rb.velocity = new Vector2(45, 65);
+                rb.velocity = new Vector2(40, 70);
                 inputtimer = 0.2f;
                 transform.localScale = new Vector2(1, 1);
             }
@@ -175,7 +176,7 @@ public class Playercontroller2 : MonoBehaviour
             if (Edgelimit != true)
             {
 
-                rb.velocity = new Vector2(-45, 65);
+                rb.velocity = new Vector2(-40, 70);
                 inputtimer = 0.2f;
                 transform.localScale = new Vector2(-1, 1);
             }
@@ -203,6 +204,7 @@ public class Playercontroller2 : MonoBehaviour
         {
             deathtimer = 3;
             Destroy(rb);
+            
         }
         if (touchobstacle == true && deathtimer < 1 && deathtimer > 0.8f)
         {
@@ -210,5 +212,28 @@ public class Playercontroller2 : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (rb != null && rb.velocity.magnitude > maxspeed)
+        {
+            
 
+            if(touchwallright == true || touchwallleft == true )
+
+            {
+                rb.velocity = rb.velocity.normalized * 35;
+
+            }
+            else
+            {
+                rb.velocity = rb.velocity.normalized * maxspeed;
+            }
+        }
+
+
+
+        
+
+
+    }
 }

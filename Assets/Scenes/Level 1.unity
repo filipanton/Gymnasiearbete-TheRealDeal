@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce636119bbacbf84984395a3900cdfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 50
+  movespeed: 40
   jumpforce: 60
   Player_Grounded: 0
   touchwallright: 0
