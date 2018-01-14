@@ -195,9 +195,9 @@ public class Playercontroller2 : MonoBehaviour
 
 
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (touchobstacle == true && deathtimer ==0 )
