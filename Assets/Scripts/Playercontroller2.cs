@@ -18,6 +18,7 @@ public class Playercontroller2 : MonoBehaviour
     public float deathtimer;
     public bool Edgelimit;
     public float maxspeed;
+    public AudioClip[] Sound;
 
     Rigidbody2D rb;
 
@@ -56,6 +57,7 @@ public class Playercontroller2 : MonoBehaviour
             Player_Grounded = 0;
             Allow_Double_Jump = true;
             touchingfloor = true;
+            GetComponent<Animator>().SetBool("grounded", true);
         }
 
         // Touching any of the sides or the bottom of an platform makes the player unable to double jump.
@@ -141,6 +143,7 @@ public class Playercontroller2 : MonoBehaviour
         if (Player_Grounded == 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
+            GetComponent<Animator>().SetBool("pressing move", false);
         }
 
         // When pressing space and the player grounded is less than 2 the player will be able to jump
@@ -184,15 +187,17 @@ public class Playercontroller2 : MonoBehaviour
 
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && inputtimer == 0 && touchobstacle == false && (Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.LeftArrow) == false))
         {
+
             rb.velocity = new Vector2(movespeed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
+            
         }
 
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && inputtimer == 0 && touchobstacle == false && (Input.GetKey(KeyCode.D) == false && Input.GetKey(KeyCode.RightArrow) == false))
         {
             rb.velocity = new Vector2(-movespeed, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
-
+            
 
         }
         if (Input.GetKeyDown(KeyCode.R))
@@ -202,13 +207,23 @@ public class Playercontroller2 : MonoBehaviour
 
         if (touchobstacle == true && deathtimer ==0 )
         {
-            deathtimer = 3;
+            deathtimer = 1.95f; 
             Destroy(rb);
+            GetComponent<AudioSource>().clip = Sound[0];
+            GetComponent<AudioSource>().Play();
+            GetComponent<Animator>().SetBool("touchobstacle", true);
             
+
+
         }
         if (touchobstacle == true && deathtimer < 1 && deathtimer > 0.8f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (rb.velocity.x > 1 || rb.velocity.x < -1)
+        {
+            GetComponent<Animator>().SetBool("pressing move", true);
         }
     }
 
