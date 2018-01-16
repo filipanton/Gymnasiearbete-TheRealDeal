@@ -152,9 +152,13 @@ public class Playercontroller2 : MonoBehaviour
             if (Allow_Double_Jump == true || Player_Grounded == 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+                GetComponent<AudioSource>().clip = Sound[1];
+                GetComponent<AudioSource>().Play();
                 if (Player_Grounded >= 1)
                 {
                     Player_Grounded++;
+                    GetComponent<AudioSource>().clip = Sound[2];
+                    GetComponent<AudioSource>().Play();
 
                 }
             }
@@ -169,6 +173,8 @@ public class Playercontroller2 : MonoBehaviour
                 rb.velocity = new Vector2(40, 70);
                 inputtimer = 0.2f;
                 transform.localScale = new Vector2(1, 1);
+                GetComponent<AudioSource>().clip = Sound[1];
+                GetComponent<AudioSource>().Play();
             }
             
 
@@ -182,6 +188,8 @@ public class Playercontroller2 : MonoBehaviour
                 rb.velocity = new Vector2(-40, 70);
                 inputtimer = 0.2f;
                 transform.localScale = new Vector2(-1, 1);
+                GetComponent<AudioSource>().clip = Sound[1];
+                GetComponent<AudioSource>().Play();
             }
         }
 
@@ -236,7 +244,7 @@ public class Playercontroller2 : MonoBehaviour
             if(touchwallright == true || touchwallleft == true )
 
             {
-                rb.velocity = rb.velocity.normalized * 35;
+                rb.velocity = rb.velocity.normalized * 30;
 
             }
             else
