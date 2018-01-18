@@ -29,6 +29,6 @@ public class ButtonManager : MonoBehaviour {
 
     public void Level1()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

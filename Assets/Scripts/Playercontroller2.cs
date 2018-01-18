@@ -18,6 +18,7 @@ public class Playercontroller2 : MonoBehaviour
     public float deathtimer;
     public bool Edgelimit;
     public float maxspeed;
+    public float maxwallspeed;
     public AudioClip[] Sound;
 
     Rigidbody2D rb;
@@ -72,6 +73,7 @@ public class Playercontroller2 : MonoBehaviour
 
         {
             touchwallright = true;
+
 
             if (Colliding_With.gameObject.tag == "Edge")
             {
@@ -184,7 +186,7 @@ public class Playercontroller2 : MonoBehaviour
         {
             if (Edgelimit != true)
             {
-
+                Player_Grounded++;
                 rb.velocity = new Vector2(-40, 70);
                 inputtimer = 0.2f;
                 transform.localScale = new Vector2(-1, 1);
@@ -237,26 +239,28 @@ public class Playercontroller2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb != null && rb.velocity.magnitude > maxspeed)
+        if (rb != null && rb.velocity.y < maxspeed)
         {
-            
 
-            if(touchwallright == true || touchwallleft == true )
+
+            if (touchwallright == true || touchwallleft == true)
 
             {
-                rb.velocity = rb.velocity.normalized * 30;
+                rb.velocity = new Vector2(rb.velocity.x, maxwallspeed);
+
+
 
             }
             else
             {
-                rb.velocity = rb.velocity.normalized * maxspeed;
+                rb.velocity = new Vector2(rb.velocity.x, maxspeed);
+
             }
+
+
+
+
+
         }
-
-
-
-        
-
-
     }
 }
