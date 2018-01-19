@@ -20,6 +20,8 @@ public class Playercontroller2 : MonoBehaviour
     public float maxspeed;
     public float maxwallspeed;
     public AudioClip[] Sound;
+    public float doublejumpinputtimer;
+    public bool timeronexit;
 
     Rigidbody2D rb;
 
@@ -101,11 +103,8 @@ public class Playercontroller2 : MonoBehaviour
     {
 
 
-        Player_Grounded = 1;
 
-
-
-
+        timeronexit = true;
         touchingfloor = false;
         touchwallright = false;
         touchwallleft = false;
@@ -139,6 +138,30 @@ public class Playercontroller2 : MonoBehaviour
             deathtimer = 0;
         }
 
+        if (doublejumpinputtimer > 0)
+        {
+            doublejumpinputtimer -= Time.deltaTime;
+        }
+        else
+        {
+            doublejumpinputtimer = 0;
+        }
+
+        if (timeronexit == true && doublejumpinputtimer == 0)
+
+        {
+
+            doublejumpinputtimer = 1f;
+
+            
+        }
+        if (doublejumpinputtimer  > 0.90f && doublejumpinputtimer < 0.96f)
+
+        {
+            Player_Grounded = 1;
+            doublejumpinputtimer = 0;
+            timeronexit = false;
+        }
 
 
         //if touching the ground my player wont slide

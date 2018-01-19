@@ -294,7 +294,7 @@ MonoBehaviour:
   maxCameraPos: {x: 167.8, y: 52.9, z: -10}
   player: {fileID: 1509084694}
   offset: 17
-  offsetSmoothing: 3
+  offsetSmoothing: 2
 --- !u!124 &22198612
 Behaviour:
   m_ObjectHideFlags: 0
@@ -22283,6 +22283,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 31575f0211998844eb59f654b33efb0f, type: 3}
   - {fileID: 8300000, guid: e7a76fb8e2122874eaa40d610b1c8f26, type: 3}
   - {fileID: 8300000, guid: e7a76fb8e2122874eaa40d610b1c8f26, type: 3}
+  doublejumpinputtimer: 0
+  timeronexit: 0
 --- !u!114 &1509084700
 MonoBehaviour:
   m_ObjectHideFlags: 0

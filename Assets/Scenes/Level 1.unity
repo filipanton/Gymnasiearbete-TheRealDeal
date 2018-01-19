@@ -281,6 +281,8 @@ MonoBehaviour:
   maxspeed: 110
   maxwallspeed: 0
   Sound: []
+  doublejumpinputtimer: 0
+  timeronexit: 0
 --- !u!114 &167784252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +477,8 @@ MonoBehaviour:
   maxspeed: 110
   maxwallspeed: 0
   Sound: []
+  doublejumpinputtimer: 0
+  timeronexit: 0
 --- !u!114 &192359317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,7 +1427,7 @@ MonoBehaviour:
   maxCameraPos: {x: 27.8, y: 5065.8, z: -10}
   player: {fileID: 2127026568}
   offset: 17
-  offsetSmoothing: 3
+  offsetSmoothing: 2
 --- !u!124 &967699465
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1666,6 +1670,8 @@ MonoBehaviour:
   maxspeed: 0
   maxwallspeed: 0
   Sound: []
+  doublejumpinputtimer: 0
+  timeronexit: 0
 --- !u!70 &1155319402
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3311,6 +3317,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 31575f0211998844eb59f654b33efb0f, type: 3}
   - {fileID: 8300000, guid: e7a76fb8e2122874eaa40d610b1c8f26, type: 3}
   - {fileID: 8300000, guid: e7a76fb8e2122874eaa40d610b1c8f26, type: 3}
+  doublejumpinputtimer: 0
+  timeronexit: 0
 --- !u!114 &2127026574
 MonoBehaviour:
   m_ObjectHideFlags: 0
