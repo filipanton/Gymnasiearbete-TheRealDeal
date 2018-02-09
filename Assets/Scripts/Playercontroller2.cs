@@ -22,6 +22,10 @@ public class Playercontroller2 : MonoBehaviour
     public AudioClip[] Sound;
     public float doublejumpinputtimer;
     public bool timeronexit;
+    public float airtimer;
+    public bool timertrue;
+    public float stoptimer;
+
 
     Rigidbody2D rb;
 
@@ -30,6 +34,7 @@ public class Playercontroller2 : MonoBehaviour
     {
     // Instead of writing all GetCOmponent<Rigidbody2D>() write rb.
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // What happens when touching something 
@@ -128,6 +133,24 @@ public class Playercontroller2 : MonoBehaviour
             inputtimer = 0;
         }
 
+        if (stoptimer > 0)
+        {
+            stoptimer -= Time.deltaTime;
+        }
+        else
+        {
+            stoptimer = 0;
+        }
+
+        if (airtimer > 0)
+        {
+            airtimer -= Time.deltaTime;
+        }
+        else
+        {
+            airtimer = 0;
+        }
+
         // Timer for delay when restarting scene
         if (deathtimer > 0)
         {
@@ -171,6 +194,26 @@ public class Playercontroller2 : MonoBehaviour
             GetComponent<Animator>().SetBool("pressing move", false);
         }
 
+         if (Input.GetKeyUp(KeyCode.D) == false && Input.GetKeyUp(KeyCode.A) == false && Input.GetKeyUp(KeyCode.LeftArrow) == false && Input.GetKeyUp(KeyCode.RightArrow) == false && touchwallleft == false && touchwallright == false && touchingfloor == false && airtimer ==0 )
+
+             {
+                 airtimer = 1f;
+
+
+         }
+         if (airtimer < 0.6f && airtimer != 0)
+         {
+             timertrue = true;
+             airtimer = 0;
+         }
+
+         if (timertrue == true && Input.GetKeyUp(KeyCode.D) == false && Input.GetKeyUp(KeyCode.A) == false && Input.GetKeyUp(KeyCode.LeftArrow) == false && Input.GetKeyUp(KeyCode.RightArrow) == false && touchwallleft == false && touchwallright == false && touchingfloor == false && touchobstacle == false && stoptimer == 0)
+         {
+             rb.velocity = new Vector2(0, rb.velocity.y);
+             timertrue = false;
+             Debug.Log("bajs");
+         }
+         
         // When pressing space and the player grounded is less than 2 the player will be able to jump
         if (Input.GetKeyDown(KeyCode.Space) && (Player_Grounded < 2) && touchobstacle == false)
         {
@@ -197,6 +240,7 @@ public class Playercontroller2 : MonoBehaviour
                 Player_Grounded++;
                 rb.velocity = new Vector2(40, 70);
                 inputtimer = 0.2f;
+                stoptimer = 0.5f;
                 transform.localScale = new Vector2(1, 1);
                 GetComponent<AudioSource>().clip = Sound[1];
                 GetComponent<AudioSource>().Play();
@@ -212,6 +256,7 @@ public class Playercontroller2 : MonoBehaviour
                 Player_Grounded++;
                 rb.velocity = new Vector2(-40, 70);
                 inputtimer = 0.2f;
+                stoptimer = 0.5f;
                 transform.localScale = new Vector2(-1, 1);
                 GetComponent<AudioSource>().clip = Sound[1];
                 GetComponent<AudioSource>().Play();
@@ -287,3 +332,4 @@ public class Playercontroller2 : MonoBehaviour
         }
     }
 }
+ 
