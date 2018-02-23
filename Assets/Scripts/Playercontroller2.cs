@@ -303,6 +303,26 @@ public class Playercontroller2 : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("pressing move", true);
         }
+        
+        if (touchingfloor == false)
+        {
+            GetComponent<Animator>().SetBool("Air", true);
+        }
+
+        if (touchingfloor == true)
+        {
+            GetComponent<Animator>().SetBool("Air", false);
+        }
+
+        if (touchwallleft == true|| touchwallright == true)
+        {
+            GetComponent<Animator>().SetBool("touch wall", true);
+        }
+
+        if (touchwallleft == false && touchwallright == false)
+        {
+            GetComponent<Animator>().SetBool("touch wall", false);
+        }
     }
 
     private void FixedUpdate()
