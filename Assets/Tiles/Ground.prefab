@@ -372,7 +372,7 @@ Tilemap:
   - m_RefCount: 16
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.93677455, g: 0.4291917, b: 0.4316624, a: 1}
+    m_Data: {r: 0.95538026, g: 0.47907236, b: 0.5608724, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -12, y: -6, z: 0}
