@@ -323,6 +323,12 @@ public class Playercontroller2 : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("touch wall", false);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) == true)
+        {
+            SceneManager.LoadScene(0);
+
+        }
     }
 
     private void FixedUpdate()
